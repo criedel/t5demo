@@ -11,12 +11,25 @@
     <body>
         <header>
             <ul>
-                <li>Login</li>
-                <li>Sign up</li>
+                <li class="logo"><a t:type="pageLink" t:page="index">Car Sharing App</a></li>
+            
+                <t:if t:test="loggedIn">
+                    <li>Edit Cars</li>
+                    <li>User Settings</li>
+                    <li>List Leased Cars</li>
+                    
+                    <p:else>
+                        <li><a t:type="pageLink" t:page="user/login">Login</a></li>
+                        <li><a t:type="pageLink" t:page="user/signup">Sign up</a></li>
+                    </p:else>
+                </t:if>
+                <li><a t:type="pageLink" t:page="ThisPageProducesAnError">Get the error page</a></li>
             </ul>
         </header>
 
-        <t:body />
+        <div class="content">
+            <t:body />
+        </div>
 
     </body>
 
