@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter"
       xmlns:j="tapestry-library:jquery">
 
@@ -43,6 +43,12 @@
 
             <t:body />
         </div>
+
+        <footer>
+            <t:unless test="symbol:tapestry.production-mode">
+                <t:headline t:text="literal:DEVELOPMENT MODE ON" />
+            </t:unless>
+        </footer>
 
     </body>
 
