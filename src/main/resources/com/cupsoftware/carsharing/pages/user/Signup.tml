@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<body xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery"
+      t:type="UILayout">
+
+    <div>
+        <h1>${message:headline}</h1>
+    </div>
+
+</body>
