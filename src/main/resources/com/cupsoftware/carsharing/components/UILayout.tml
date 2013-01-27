@@ -12,12 +12,13 @@
         <header>
             <ul>
                 <li class="logo"><a t:type="pageLink" t:page="index">Car Sharing App</a></li>
-            
+
                 <t:if t:test="loggedIn">
-                    <li>Edit Cars</li>
-                    <li>User Settings</li>
-                    <li>List Leased Cars</li>
-                    
+                    <li><a t:type="pageLink" t:page="cars/edit">Edit Cars</a></li>
+                    <li><a t:type="pageLink" t:page="cars/overview">List Leased Cars</a></li>
+
+                    <li><a t:type="pageLink" t:page="user/settings">User Settings</a></li>
+
                     <p:else>
                         <li><a t:type="pageLink" t:page="user/login">Login</a></li>
                         <li><a t:type="pageLink" t:page="user/signup">Sign up</a></li>

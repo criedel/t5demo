@@ -4,16 +4,17 @@
       xmlns:j="tapestry-library:jquery"
       t:type="UILayout">
 
-    <div t:type="zone" t:id="loginZone">
+    <div t:type="zone" t:id="settingsZone">
         <h1>${message:headline}</h1>
-        
+
         <t:alerts />
-        
-        <form t:id="loginForm"
+
+        <form t:id="settingsForm"
               t:type="beanEditForm"
-              t:zone="loginZone"
+              t:zone="settingsZone"
+              t:context="user.id"
               t:object="user"
-              t:include="name,password,rememberMe" />
+              t:include="password,passwordRepeat" />
     </div>
 
 </body>

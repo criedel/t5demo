@@ -4,8 +4,18 @@
       xmlns:j="tapestry-library:jquery"
       t:type="UILayout">
 
-    <div>
+    <div t:type="zone" t:id="signupZone" t:update="show">
         <h1>${message:headline}</h1>
+        
+        <t:alerts />
+
+        <form t:id="signupForm" 
+              t:type="beanEditform" 
+              t:object="user" 
+              t:include="name,rememberMe,password,passwordRepeat"
+              t:zone="signupZone">
+            
+        </form>
     </div>
 
 </body>

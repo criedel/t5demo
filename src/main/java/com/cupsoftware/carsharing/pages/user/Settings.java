@@ -1,17 +1,19 @@
 package com.cupsoftware.carsharing.pages.user;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tapestry5.alerts.AlertManager;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.corelib.components.BeanEditForm;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.jpa.annotations.CommitAfter;
 import org.apache.tapestry5.services.ApplicationStateManager;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 
@@ -19,7 +21,8 @@ import com.cupsoftware.carsharing.AppUtil;
 import com.cupsoftware.carsharing.model.User;
 import com.cupsoftware.carsharing.pages.Index;
 
-public class Login {
+
+public class Settings {
 
     @Inject
     private Messages messages;
@@ -37,40 +40,52 @@ public class Login {
     private ApplicationStateManager asm;
 
     @InjectComponent
-    private BeanEditForm loginForm;
+    private BeanEditForm settingsForm;
 
     @InjectComponent
-    private Zone loginZone;
+    private Zone settingsZone;
 
+    @SessionState
     @Property
     private User user;
 
-    void onValidateFromLoginForm() throws NoSuchAlgorithmException {
+    Object onActivate() {
 
-        @SuppressWarnings("unchecked")
-        final List<User> userFromDB = em.createNamedQuery("User.findByNameAndPasshash")
-                                         .setParameter("name", user.getName().toLowerCase())
-                                         .setParameter("passhash", AppUtil.toMD5Hash(user.getPassword()))
-                                         .setMaxResults(1)
-                                         .getResultList();
+        if (!asm.exists(User.class)) {
 
-        if (userFromDB.isEmpty()) {
+            return Index.class;
+        }
 
-            loginForm.recordError(messages.get("user-not-found"));
+        return null;
+    }
 
-        } else if (loginForm.isValid()) {
+    void onActionFromSettingsForm(final Long userId) {
 
-            asm.set(User.class, userFromDB.get(0));
+        this.user = em.find(User.class, userId);
+    }
+
+    void onValidateFromSettingsForm() throws NoSuchAlgorithmException {
+
+        if (!StringUtils.equals(user.getPassword(), user.getPasswordRepeat())) {
+
+            settingsForm.recordError(messages.get("passwords-must-match"));
+
+        } else {
+
+            user.setPasshash(AppUtil.toMD5Hash(user.getPassword()));
         }
     }
 
-    Object onSuccessFromLoginForm() {
+    @CommitAfter
+    void onSuccessFromSettingsForm() {
 
-        return Index.class;
+        em.merge(user);
+        alertManager.success(messages.get("password-saved"));
+        ajaxResponseRenderer.addRender(settingsZone);
     }
 
-    void onFailureFromLoginForm() {
+    void onFailureFromSettingsForm() {
 
-        ajaxResponseRenderer.addRender(loginZone);
+        ajaxResponseRenderer.addRender(settingsZone);
     }
 }
