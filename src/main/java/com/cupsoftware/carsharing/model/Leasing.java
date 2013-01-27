@@ -73,4 +73,9 @@ public class Leasing extends BaseEntity {
         this.leasingEnd = leasingEnd;
     }
 
+    @Override
+    public String toString() {
+
+        return String.format("%s leased '%s' at %s", user, car, leasingStart);
+    }
 }

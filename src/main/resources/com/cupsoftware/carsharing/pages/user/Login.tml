@@ -5,8 +5,8 @@
       t:type="UILayout">
 
     <div t:type="zone" t:id="loginZone">
-        <h1>${message:headline}</h1>
-        
+        <t:headline t:text="headline" />
+
         <t:alerts />
         
         <form t:id="loginForm"

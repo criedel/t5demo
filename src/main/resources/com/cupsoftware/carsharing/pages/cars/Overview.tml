@@ -2,9 +2,20 @@
 <body xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter"
       xmlns:j="tapestry-library:jquery"
-      t:type="UILayout">
+      t:type="UILayout"
+      t:title="message:headline">
 
-    <div>
-        <h1>${message:headline}</h1>
-    </div>
+    <t:headline t:text="headline" />
+    
+    <t:alerts />
+
+    <ul t:type="zone" t:id="leasingEntryZone">
+        <li t:type="loop" t:source="leasings" t:value="leasing" style="display: block; margin: 10px 0;">
+            <span style="display: inline-block; margin: 0 10px;">
+                <a t:type="actionLink" t:id="endLeasing" t:zone="^" t:context="leasing">End Leasing</a>
+            </span>
+            <span>${leasing}</span>
+        </li>
+    </ul>
+
 </body>

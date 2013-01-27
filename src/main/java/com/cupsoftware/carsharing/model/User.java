@@ -108,4 +108,9 @@ public class User extends BaseEntity {
         this.rememberMe = rememberMe;
     }
 
+    @Override
+    public String toString() {
+
+        return name;
+    }
 }

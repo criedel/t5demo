@@ -28,11 +28,11 @@ header {
 	width: 100%;
 }
 
-header ul {
-    display: block;
+ul {
+	display: block;
 }
 
-header ul li {
+ul li {
     list-style: none;
     display: inline-block;
 }

@@ -5,12 +5,11 @@
       t:type="UILayout">
 
     <p:loggedIn>
-        <div>
-            <h1>${message:headline}</h1>
-        </div>
-        
-        <table t:type="grid" t:source="cars" t:rowsPerPage="10" t:pagerPosition="both" />
-        
+
+        <t:headline t:text="headline" />
+
+        <t:leaseCars />
+
     </p:loggedIn>
 
     <p:notLoggedIn>

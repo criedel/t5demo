@@ -8,6 +8,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.ApplicationStateManager;
 
 import com.cupsoftware.carsharing.model.User;
 
@@ -16,6 +17,9 @@ public class UILayout {
 
     @Inject
     private Messages messages;
+
+    @Inject
+    private ApplicationStateManager applicationStateManager;
 
     @SessionState
     private User user;
@@ -45,5 +49,10 @@ public class UILayout {
     void setupRender() {
 
         loggedIn = userExists;
+    }
+
+    void onActionFromLogout() {
+
+        applicationStateManager.set(User.class, null);
     }
 }

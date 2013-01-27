@@ -54,4 +54,9 @@ public class Car extends BaseEntity {
         this.carModel = carModel;
     }
 
+    @Override
+    public String toString() {
+
+        return String.format("%s %s", carModel.toString(), name);
+    }
 }

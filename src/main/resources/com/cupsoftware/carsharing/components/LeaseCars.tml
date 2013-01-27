@@ -1,0 +1,20 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+             xmlns:p="tapestry:parameter"
+             xmlns:j="tapestry-library:jquery">
+
+    <t:zone t:id="leaseCarZone" t:update="show">
+    <table t:type="grid" t:source="cars" t:row="car" t:rowsPerPage="10" t:pagerPosition="both" t:add="controls">
+        
+        <!-- this is a block parameter for the grid component -->
+        <p:controlsCell>
+
+            <ul>
+                <li><a t:type="eventLink" t:event="lease" t:zone="^" t:context="car.id">Lease this car!</a></li>
+            </ul>
+            
+        </p:controlsCell>
+        
+    </table>
+    </t:zone>
+
+</t:container>
