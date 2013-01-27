@@ -22,7 +22,7 @@ public class DevelopmentModule {
         configuration.add(AppSymbols.DB_USER, "sa");
         configuration.add(AppSymbols.DB_PASSWORD, "");
         configuration.add(AppSymbols.DB_DRIVER, "org.hsqldb.jdbcDriver");
-        configuration.add(AppSymbols.DB_URL, "jdbc:hsqldb:mem:maildb");
+        configuration.add(AppSymbols.DB_URL, "jdbc:hsqldb:file:/tmp/carsharingdb");
         configuration.add(AppSymbols.DB_DDL_AUTO_MODE, "update");
     }
 

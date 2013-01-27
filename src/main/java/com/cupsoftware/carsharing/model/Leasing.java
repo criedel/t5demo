@@ -2,6 +2,11 @@ package com.cupsoftware.carsharing.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
+import org.apache.tapestry5.ioc.annotations.Inject;
+
+@Entity
 public class Leasing extends BaseEntity {
 
     private static final long serialVersionUID = -8027927956482904633L;
@@ -14,6 +19,7 @@ public class Leasing extends BaseEntity {
 
     private Date leasingEnd;
 
+    @Inject
     public Leasing() {
 
     }

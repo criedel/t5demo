@@ -28,7 +28,7 @@ public class CarsharingModule {
     public static void combineValidators(MappedConfiguration<String, String> configuration) {
 
         // Now you can annotate your bean properties with @Validate("password")
-        configuration.add("password", "required,minlength=10,maxlength=30");
+        configuration.add("password", "required,minlength=5,maxlength=30");
     }
 
     @Contribute(EntityManagerSource.class)

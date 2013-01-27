@@ -35,7 +35,7 @@ public class User extends BaseEntity {
     @DataType("password")
     private transient String passwordRepeat;
 
-    @Column(length = 30, nullable = false)
+    @Column(length = 255, nullable = false)
     private String passhash;
 
     @Column

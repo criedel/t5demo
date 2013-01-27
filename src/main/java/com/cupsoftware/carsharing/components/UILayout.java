@@ -1,6 +1,7 @@
 package com.cupsoftware.carsharing.components;
 
 import org.apache.tapestry5.BindingConstants;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
@@ -24,6 +25,14 @@ public class UILayout {
     @Property(write = false)
     @Parameter(defaultPrefix = BindingConstants.LITERAL, required = true)
     private String title;
+
+    @Property(write = false)
+    @Parameter(name = "notLoggedIn", defaultPrefix = BindingConstants.BLOCK)
+    private Block notLoggedInBlock;
+
+    @Property(write = false)
+    @Parameter(name = "loggedIn", defaultPrefix = BindingConstants.BLOCK)
+    private Block loggedInBlock;
 
     @Property
     private boolean loggedIn;

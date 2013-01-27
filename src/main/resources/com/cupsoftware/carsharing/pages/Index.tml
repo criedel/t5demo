@@ -4,8 +4,19 @@
       xmlns:j="tapestry-library:jquery"
       t:type="UILayout">
 
-    <div>
-        <h1>${message:headline}</h1>
-    </div>
+    <p:loggedIn>
+        <div>
+            <h1>${message:headline}</h1>
+        </div>
+        
+        <table t:type="grid" t:source="cars" t:rowsPerPage="10" t:pagerPosition="both" />
+        
+    </p:loggedIn>
+
+    <p:notLoggedIn>
+        <div>
+            <h1>Please <a t:type="pageLink" t:page="user/login">login</a> or <a t:type="pageLink" t:page="user/signup">sign up</a>.</h1>
+        </div>
+    </p:notLoggedIn>
 
 </body>

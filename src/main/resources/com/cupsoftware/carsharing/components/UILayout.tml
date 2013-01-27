@@ -29,6 +29,17 @@
         </header>
 
         <div class="content">
+
+            <t:if t:test="loggedIn">
+
+                <t:delegate t:to="loggedInBlock" />
+
+                <p:else>
+                    <t:delegate t:to="notLoggedInBlock" />
+                </p:else>
+
+            </t:if>
+
             <t:body />
         </div>
 
