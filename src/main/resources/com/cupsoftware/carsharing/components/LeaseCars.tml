@@ -10,6 +10,18 @@
 
             <ul>
                 <li><a t:type="eventLink" t:event="lease" t:zone="^" t:context="car.id">Lease this car!</a></li>
+                
+                <li style="display: block;">
+                    <form t:type="form" t:zone="^" t:id="setLeaseTimeForm">
+
+                        <t:hidden t:value="car" />
+                    
+                        <t:label t:for="leaseTime" />
+                        <t:datefield t:id="leaseTime" t:value="leaseTime" />
+                        
+                        <t:submit />
+                    </form>
+                </li>
             </ul>
             
         </p:controlsCell>

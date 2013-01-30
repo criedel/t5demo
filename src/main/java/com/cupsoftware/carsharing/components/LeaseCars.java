@@ -12,6 +12,7 @@ import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.jpa.annotations.CommitAfter;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
+import org.joda.time.DateTime;
 
 import com.cupsoftware.carsharing.model.Car;
 import com.cupsoftware.carsharing.model.Leasing;
@@ -40,6 +41,10 @@ public class LeaseCars {
     @Property
     private Car car;
 
+    // example of how to use joda time
+    @Property
+    private DateTime leaseTime;
+
     @SuppressWarnings("unchecked")
     void setupRender() {
 
@@ -60,6 +65,21 @@ public class LeaseCars {
     void onLease(final Car car) {
 
         final Leasing leasing = new Leasing(user, car);
+
+        em.persist(leasing);
+        ajaxResponseRenderer.addRender(leaseCarZone);
+
+        alertManager.info(String.format("%s was leased by %s", car.getName(), user.getName()));
+
+        setupRender();
+    }
+
+    @CommitAfter
+    void onSuccessFromSetLeaseTimeForm() {
+
+        final Leasing leasing = new Leasing(user, car);
+        leasing.setLeasingStart(leaseTime.toDate());
+        leaseTime = null;
 
         em.persist(leasing);
         ajaxResponseRenderer.addRender(leaseCarZone);

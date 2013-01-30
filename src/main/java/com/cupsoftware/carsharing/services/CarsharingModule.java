@@ -1,15 +1,21 @@
 package com.cupsoftware.carsharing.services;
 
+import java.util.Date;
+
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.services.Coercion;
+import org.apache.tapestry5.ioc.services.CoercionTuple;
+import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.jpa.EntityManagerSource;
 import org.apache.tapestry5.jpa.JpaEntityPackageManager;
 import org.apache.tapestry5.jpa.PersistenceUnitConfigurer;
 import org.apache.tapestry5.jpa.TapestryPersistenceUnitInfo;
 import org.apache.tapestry5.validator.ValidatorMacro;
+import org.joda.time.DateTime;
 
 import com.cupsoftware.carsharing.AppSymbols;
 
@@ -60,5 +66,30 @@ public class CarsharingModule {
     public static void providePackages(Configuration<String> configuration) {
 
         configuration.add("com.cupsoftware.carsharing.model");
+    }
+
+    @Contribute(TypeCoercer.class)
+    public static void contributeTypeCoercer(final org.apache.tapestry5.ioc.Configuration<CoercionTuple> configuration) {
+
+        // Add support for Joda Time's DateTime
+        // DateTime -> Date
+        configuration.add(new CoercionTuple<DateTime, Date>(DateTime.class, Date.class, new Coercion<DateTime, Date>() {
+
+            @Override
+            public Date coerce(DateTime input) {
+
+                return input.toDate();
+            }
+        }));
+
+        // Date -> DateTime
+        configuration.add(new CoercionTuple<Date, DateTime>(Date.class, DateTime.class, new Coercion<Date, DateTime>() {
+
+            @Override
+            public DateTime coerce(Date input) {
+
+                return new DateTime(input.getTime());
+            }
+        }));
     }
 }
