@@ -5,7 +5,7 @@
       t:type="UILayout">
 
     <div>
-        <h1>${message:headline}</h1>
+        <h1 id="headline">${message:headline}</h1>
     </div>
 
 </body>
