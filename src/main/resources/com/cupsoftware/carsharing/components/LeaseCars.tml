@@ -1,8 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-             xmlns:p="tapestry:parameter"
-             xmlns:j="tapestry-library:jquery">
+             xmlns:p="tapestry:parameter">
 
-    <t:zone t:id="leaseCarZone" t:update="show">
+    <t:zone t:id="leaseCarZone" id="leaseCarZone">
     <table t:type="grid" t:source="cars" t:row="car" t:rowsPerPage="10" t:pagerPosition="both" t:add="controls">
         
         <!-- this is a block parameter for the grid component -->

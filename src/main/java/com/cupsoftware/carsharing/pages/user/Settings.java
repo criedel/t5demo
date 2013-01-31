@@ -59,11 +59,6 @@ public class Settings {
         return null;
     }
 
-    void onActionFromSettingsForm(final Long userId) {
-
-        this.user = em.find(User.class, userId);
-    }
-
     void onValidateFromSettingsForm() throws NoSuchAlgorithmException {
 
         if (!StringUtils.equals(user.getPassword(), user.getPasswordRepeat())) {
@@ -81,11 +76,11 @@ public class Settings {
 
         em.merge(user);
         alertManager.success(messages.get("password-saved"));
-        ajaxResponseRenderer.addRender(settingsZone);
+        ajaxResponseRenderer.addRender("settingsZone", settingsZone);
     }
 
     void onFailureFromSettingsForm() {
 
-        ajaxResponseRenderer.addRender(settingsZone);
+        ajaxResponseRenderer.addRender("settingsZone", settingsZone);
     }
 }

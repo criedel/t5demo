@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <body xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter"
-      xmlns:j="tapestry-library:jquery"
       t:type="UILayout">
 
-    <div t:type="zone" t:id="carsZone">
+    <div t:type="zone" t:id="carsZone" id="carsZone">
         <h1>${message:cars-head}</h1>
 
         <t:grid t:source="cars" t:row="car" t:rowsPerPage="2" />

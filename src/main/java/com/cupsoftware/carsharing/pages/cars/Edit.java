@@ -63,7 +63,7 @@ public class Edit {
     void onSubmitFromAddCar() {
 
         // will be called after either success or failure event has been processed.
-        ajaxResponseRenderer.addRender(carsZone);
+        ajaxResponseRenderer.addRender("carsZone", carsZone.getBody());
         setupRender();
     }
 

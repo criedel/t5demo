@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <body xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter"
-      xmlns:j="tapestry-library:jquery"
       t:type="UILayout">
 
-    <div t:type="zone" t:id="signupZone" t:update="show">
+    <div t:type="zone" t:id="signupZone" id="signupZone">
         <h1>${message:headline}</h1>
         
         <t:alerts />

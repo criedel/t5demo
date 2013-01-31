@@ -74,35 +74,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.got5</groupId>
-            <artifactId>tapestry5-jquery</artifactId>
-            <version>3.3.5-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.tapestry</groupId>
-                    <artifactId>tapestry-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tapestry</groupId>
-                    <artifactId>tapestry-func</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tapestry</groupId>
-                    <artifactId>tapestry-upload</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>commons-lang</artifactId>
-                    <groupId>commons-lang</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng-version}</version>
+            <version>${testng-release-version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -149,15 +123,18 @@
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.26</version>
                 <configuration>
-
-                    <contextPath>/</contextPath>
-
                     <!-- Log to the console. -->
                     <requestLog implementation="org.mortbay.jetty.NCSARequestLog">
-                        <!-- This doesn't do anything for Jetty, but is a 
-                            workaround for a Maven bug that prevents the requestLog from being set. -->
+                        <!-- This doesn't do anything for Jetty, but is a workaround for a Maven bug
+                             that prevents the requestLog from being set. -->
                         <append>true</append>
                     </requestLog>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>tapestry.execution-mode</name>
+                            <value>development</value>
+                        </systemProperty>
+                    </systemProperties>
                 </configuration>
             </plugin>
 
@@ -187,10 +164,20 @@
         </plugins>
     </build>
     
+    <repositories>
+
+        <!-- This repository is only needed when the Tapestry version is a preview release, rather
+             than a final release. -->
+        <repository>
+            <id>apache-staging</id>
+            <url>https://repository.apache.org/content/repositories/orgapachetapestry-096/</url>
+        </repository>
+    </repositories>
+
     <properties>
-        <selenium-version>2.22.0</selenium-version>
-        <tapestry-release-version>5.3.6</tapestry-release-version>
-        <testng-version>5.14.9</testng-version>
+        <selenium-version>2.26.0</selenium-version>
+        <tapestry-release-version>5.4-alpha-2</tapestry-release-version>
+        <testng-release-version>6.5.2</testng-release-version>
         <profile.production.mode>false</profile.production.mode>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <browserStartCommand>*firefox</browserStartCommand>

@@ -54,7 +54,7 @@ public class Overview {
         leasing.setLeasingEnd(new Date());
         em.merge(leasing);
 
-        ajaxResponseRenderer.addRender(leasingEntryZone);
+        ajaxResponseRenderer.addRender("leasingEntryZone", leasingEntryZone.getBody());
         alertManager.info("Leasing has been ended.");
 
         setupRender();

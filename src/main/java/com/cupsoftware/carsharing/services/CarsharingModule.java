@@ -7,13 +7,17 @@ import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.ioc.services.ApplicationDefaults;
 import org.apache.tapestry5.ioc.services.Coercion;
 import org.apache.tapestry5.ioc.services.CoercionTuple;
+import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.jpa.EntityManagerSource;
 import org.apache.tapestry5.jpa.JpaEntityPackageManager;
 import org.apache.tapestry5.jpa.PersistenceUnitConfigurer;
 import org.apache.tapestry5.jpa.TapestryPersistenceUnitInfo;
+import org.apache.tapestry5.services.compatibility.Compatibility;
+import org.apache.tapestry5.services.compatibility.Trait;
 import org.apache.tapestry5.validator.ValidatorMacro;
 import org.joda.time.DateTime;
 
@@ -51,9 +55,12 @@ public class CarsharingModule {
             @Override
             public void configure(TapestryPersistenceUnitInfo unitInfo) {
 
-                unitInfo.addProperty("hibernate.connection.url", url).addProperty("hibernate.connection.username", user)
-                        .addProperty("hibernate.connection.password", password).addProperty("hibernate.dialect", dialect)
-                        .addProperty("hibernate.connection.driver_class", driver).addProperty("hibernate.hbm2ddl.auto", ddlAuto)
+                unitInfo.addProperty("hibernate.connection.url", url)
+                        .addProperty("hibernate.connection.username", user)
+                        .addProperty("hibernate.connection.password", password)
+                        .addProperty("hibernate.dialect", dialect)
+                        .addProperty("hibernate.connection.driver_class", driver)
+                        .addProperty("hibernate.hbm2ddl.auto", ddlAuto)
                         .addProperty("hibernate.connection.provider_class", "org.hibernate.connection.C3P0ConnectionProvider")
                         .addProperty("hibernate.c3p0.preferredTestQuery", "SELECT 1");
             }
@@ -91,5 +98,19 @@ public class CarsharingModule {
                 return new DateTime(input.getTime());
             }
         }));
+    }
+
+    @Contribute(SymbolProvider.class)
+    @ApplicationDefaults
+    public static void switchProviderToJQuery(MappedConfiguration<String, Object> configuration) {
+
+        configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
+    }
+
+    @Contribute(Compatibility.class)
+    public static void disableScriptaculous(MappedConfiguration<Trait, Boolean> configuration) {
+
+        configuration.add(Trait.SCRIPTACULOUS, false);
+        configuration.add(Trait.INITIALIZERS, false);
     }
 }

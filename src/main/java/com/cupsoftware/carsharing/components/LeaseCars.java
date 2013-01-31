@@ -67,7 +67,7 @@ public class LeaseCars {
         final Leasing leasing = new Leasing(user, car);
 
         em.persist(leasing);
-        ajaxResponseRenderer.addRender(leaseCarZone);
+        ajaxResponseRenderer.addRender("leaseCarZone", leaseCarZone.getBody());
 
         alertManager.info(String.format("%s was leased by %s", car.getName(), user.getName()));
 
@@ -82,7 +82,7 @@ public class LeaseCars {
         leaseTime = null;
 
         em.persist(leasing);
-        ajaxResponseRenderer.addRender(leaseCarZone);
+        ajaxResponseRenderer.addRender("leaseCarZone", leaseCarZone.getBody());
 
         alertManager.info(String.format("%s was leased by %s", car.getName(), user.getName()));
 

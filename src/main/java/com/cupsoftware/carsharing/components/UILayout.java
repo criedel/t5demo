@@ -12,7 +12,7 @@ import org.apache.tapestry5.services.ApplicationStateManager;
 
 import com.cupsoftware.carsharing.model.User;
 
-@Import(stylesheet = "context:css/car.css")
+@Import(stack = "core", stylesheet = "context:css/car.css")
 public class UILayout {
 
     @Inject

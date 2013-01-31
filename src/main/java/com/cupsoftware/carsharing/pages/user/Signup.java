@@ -83,6 +83,6 @@ public class Signup {
     void onFailureFromSignupForm() {
 
         alertManager.error(messages.get("user-not-saved"));
-        ajaxResponseRenderer.addRender(signupZone);
+        ajaxResponseRenderer.addRender("signupZone", signupZone);
     }
 }

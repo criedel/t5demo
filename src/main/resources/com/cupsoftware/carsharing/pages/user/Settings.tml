@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <body xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter"
-      xmlns:j="tapestry-library:jquery"
       t:type="UILayout">
 
-    <div t:type="zone" t:id="settingsZone">
+    <div t:type="zone" t:id="settingsZone" id="settingsZone">
         <t:headline t:text="headline" />
 
         <t:alerts />
@@ -12,7 +11,6 @@
         <form t:id="settingsForm"
               t:type="beanEditForm"
               t:zone="settingsZone"
-              t:context="user.id"
               t:object="user"
               t:include="password,passwordRepeat" />
     </div>

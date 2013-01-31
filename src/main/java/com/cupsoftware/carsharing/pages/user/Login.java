@@ -71,6 +71,6 @@ public class Login {
 
     void onFailureFromLoginForm() {
 
-        ajaxResponseRenderer.addRender(loginZone);
+        ajaxResponseRenderer.addRender("loginZone", loginZone);
     }
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <body xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter"
-      xmlns:j="tapestry-library:jquery"
       t:type="UILayout"
       t:title="message:headline">
 
@@ -9,7 +8,7 @@
     
     <t:alerts />
 
-    <ul t:type="zone" t:id="leasingEntryZone">
+    <ul t:type="zone" t:id="leasingEntryZone" id="leasingEntryZone">
         <li t:type="loop" t:source="leasings" t:value="leasing" style="display: block; margin: 10px 0;">
             <span style="display: inline-block; margin: 0 10px;">
                 <a t:type="actionLink" t:id="endLeasing" t:zone="^" t:context="leasing">End Leasing</a>
